@@ -1,0 +1,9 @@
+.venv/*
+twitter_exploratory_project/__pycache__/*
+twitter_exploratory_project/core/toolkit_twitter/__pycache__/*
+twitter_exploratory_project/core/__pycache__/*
+twitter_exploratory_project/core/toolkit_twitter/.ipynb_checkpoints/*
+*.sqlite3
+*pyc
+__pycache__
+staticfiles
