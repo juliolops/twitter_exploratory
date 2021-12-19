@@ -7,8 +7,6 @@ import datetime
 import dateutil.parser
 import unicodedata
 import time
-import seaborn as sns
-import matplotlib.pyplot as plt 
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.feature_extraction.text import TfidfVectorizer
 from nltk.corpus import stopwords
@@ -85,13 +83,13 @@ def extract_hashtags(tweet):
 
 
 
-def extract_citation(tweet):
+def extract_citations(tweet):
     
-    list_hashtags = re.findall(r"@[a-zA-Zà-úÀ-Ú0-9]+",tweet)
+    list_citations = re.findall(r"@[a-zA-Zà-úÀ-Ú0-9]+",tweet)
     
-    string_only_hashtags = " ".join(list_hashtags)
+    string_only_citations = " ".join(list_citations)
     
-    return string_only_hashtags
+    return string_only_citations
 
 
 
