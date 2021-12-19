@@ -73,28 +73,39 @@ def convert_text_to_no_repeat_words(text):
 
 
 
-def extract_hashtags(tweet):
+def extract_hashtags_citations(tweet,extract="both"):
+
+
+    string_only_hashtags = ""
+    string_only_citations = ""
+
+    if extract == "hashtag" or extract == "both":
+
+        list_hashtags = re.findall(r"#[a-zA-Zà-úÀ-Ú0-9]+",tweet)
+        
+        string_only_hashtags = " ".join(list_hashtags)
+
+    if extract == "citation" or extract == "both":
+
+        list_citations = re.findall(r"@[a-zA-Zà-úÀ-Ú0-9]+",tweet)
+        
+        string_only_citations = " ".join(list_citations)
     
-    list_hashtags = re.findall(r"#[a-zA-Zà-úÀ-Ú0-9]+",tweet)
     
-    string_only_hashtags = " ".join(list_hashtags)
-    
-    return string_only_hashtags
+    return string_only_hashtags + string_only_citations
 
 
 
-def extract_citations(tweet):
-    
-    list_citations = re.findall(r"@[a-zA-Zà-úÀ-Ú0-9]+",tweet)
-    
-    string_only_citations = " ".join(list_citations)
-    
-    return string_only_citations
+def text_cleaner(text,stop_words_domain =[],rmv_citations=False,rmv_hashtags=False):
 
 
+    if rmv_hashtags:
 
+        text = re.sub("#[a-zA-Zà-úÀ-Ú0-9]+","",text)
 
-def text_cleaner(text,stop_words_domain =[]):
+    if rmv_citations:
+
+        text = re.sub("@[a-zA-Zà-úÀ-Ú0-9]+","",text)
 
     
     nltk_stopwords =  stopwords.words('portuguese') + stop_words_domain
