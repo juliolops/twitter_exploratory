@@ -70,7 +70,7 @@ def paginate(url,headers,next_token=""):
 
 
 
-def get_csv_from_twitter(keyword, start_time,end_time,qnt):
+def get_data_from_twitter(keyword, start_time,end_time,qnt):
 
     bearer_token = auth()
     
