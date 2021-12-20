@@ -114,4 +114,4 @@ def home(request):
 
      print(data_plot)
 
-     return render(request,'index.html')
+     return render(request,'index.html',data_plot)

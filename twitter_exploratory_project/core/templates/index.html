@@ -1,1 +1,586 @@
-<h1>ajijaijaija</h1>
+{% load static %}
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+
+    <link rel="stylesheet" href= "{% static 'css/style.css' %}">
+
+
+</head>
+<body>
+    
+    <section>
+
+    <h1>TEXT EXPLORATORY TWITTER</h1>
+
+    <div class="container-header">
+
+    
+
+    <div class="div-text-content">
+
+        <h3>Content:</h3>
+        <textarea class="textArea contentTwitter" placeholder="Content from twitter">{{query}}</textarea>
+
+    </div>
+
+    <div class="div-text-stop-words">
+
+        <h3>Stop Words:</h3>
+        <textarea class="textArea StopWords"  placeholder="Stop words of domain" ></textarea>
+
+    </div>
+    <!--<button class="buttonSend"><strong>SEND</strong></button>-->
+
+    <div class="buttons">
+    <h1 class="status-system">{{status_system}}</h1>
+    <input type="button" class="buttonRun" id="add" value="RUN" >
+    <input type="button" class="buttonStop" id="add" value="STOP" >
+
+
+</div>     
+</div>
+
+
+    </div>
+
+    <div class="container-cards">
+
+        <article class="card card-1">
+
+            <div class="freq-words">
+
+                <h1 class="text-summary">STATISTIC REPORT</h1>
+
+
+                <ul>
+                    <li>AVG Quantity of tokens = {{mean_count}}</li>
+                    <li>VAR Quantity of tokens = {{var_count}}</li>
+                    <li>STD Quantity of tokens = {{std_count}}</li>
+                    <li>AVG Quantity of differents tokens = {{mean_count_diferents_tokens}}</li>
+                    <li>VAR Quantity of differents tokens = {{var_count_diferents_tokens}}</li>
+                    <li>STD Quantity of differents differents tokens = {{std_count_diferents_tokens}}</li>
+                    <li>ºN Tweets = {{n_tweets}}</li>
+                    <li>Newest date tweet = {{newest_date_tweet}}</li>
+                    <li>Oldest date tweet = {{oldest_date_tweet}}</li>
+
+
+                </ul>
+                
+            </div>
+
+        </article>
+
+
+        <article class="card-2" >
+
+                <img src="{% static '/css/word_cloud.png' %}"  width="1050" height="500">
+
+
+        </article>
+
+
+    </div>
+
+
+<div class="container-cards">
+
+
+    <article class="card card-3">
+
+        <div class="freq-words">
+        <canvas id="grafico3"></canvas>
+        
+        </div>
+
+
+    </article>
+
+
+    <article class="card card-4">
+
+        <div class="freq-words">
+        
+        <canvas id="grafico4"></canvas>
+            
+        </div>
+
+    </article>
+
+
+</div>
+    
+
+
+    <div class="container-cards">
+
+        <article class="card card-5">
+
+            <div class="freq-words">
+
+                <canvas id="grafico5"></canvas>
+                
+            </div>
+
+        </article>
+
+        <article class="card card-6">
+
+            <div class="freq-words">
+
+                <canvas id="grafico6"></canvas>
+                
+            </div>
+
+        </article>
+
+
+    
+    </div>
+
+
+
+
+    </section>
+
+
+
+    
+    <script src="{% static 'js/node_modules/chart.js/dist/Chart.min.js' %}"></script>
+
+    <script src="{% static 'js/jquery.js' %}"></script>
+
+    <script src="{% static 'js/functions_buttons.js' %}"></script>
+    <!--<script src="{% static 'js/app.js' %}"></script>-->
+
+
+<script>
+
+        contexto3 = document.getElementById("grafico3")
+        contexto4 = document.getElementById("grafico4")
+        contexto5 = document.getElementById("grafico5")
+        contexto6 = document.getElementById("grafico6")
+    
+
+
+        var grafico3 = new Chart(contexto3,
+            
+            {
+
+                type:"bar",
+                data: {
+
+                    labels:{{ hashtag_report_count_x |safe }},
+                    datasets: [{
+                        //label:"# de votos",
+                        data:{{ hashtag_report_count_y |safe }},
+                        backgroundColor : "#45b6fe",
+
+                        borderColor:  [
+
+                            "rgba(53,98,68,1)",
+                            "rgba(53,98,68,1)",
+                            "rgba(53,98,68,1)",
+                            "rgba(53,98,68,1)",
+                            "rgba(53,98,68,1)",
+                            "rgba(53,98,68,1)",
+                            "rgba(53,98,68,1)",
+                            "rgba(53,98,68,1)",
+                            "rgba(53,98,68,1)",
+                            "rgba(53,98,68,1)"
+                        ],
+
+                        borderWidth: 1
+
+                    }]
+                }
+
+            ,
+            
+            options: {
+            
+            
+                title: {
+            
+                    display:true,
+                    fontSize:20,
+                    text: "Top 10 Count Words",
+                    fontColor: 'white'
+                },
+            
+                labels: {
+            
+                    fontStyle: 'bold',
+                    fontColor: '#ff1493'
+            
+                
+                    
+                },
+            
+            
+                legend :{
+            
+                    display:false
+                },
+            
+                scales: {
+                yAxes: [{
+                    display: true,
+                    
+                    gridLines: {
+                        display : true
+                    
+                    },
+                    ticks: {
+                        display: true,
+                        fontColor: 'white',
+                        beginAtZero:true,
+                        fontSize: 20
+                    }
+                }],
+                xAxes: [{
+                    gridLines: {
+                        display : true
+                    },
+                    ticks: {
+                        beginAtZero:true,
+                        fontColor: 'white',
+                        fontSize: 20
+                    }
+                }]
+            },
+            
+            
+            
+            
+            
+            }
+        }
+            
+            )
+
+
+
+
+
+            var grafico4 = new Chart(contexto4,
+            
+                {
+            
+                    type:"bar",
+                    data: {
+            
+                        labels:{{ citation_report_count_x |safe }},
+                        datasets: [{
+                            //label:"# de votos",
+                            data:{{ citation_report_count_y |safe }},
+                            backgroundColor : "#45b6fe",
+            
+                            borderColor:  [
+            
+                                "rgba(53,98,68,1)",
+                                "rgba(53,98,68,1)",
+                                "rgba(53,98,68,1)",
+                                "rgba(53,98,68,1)",
+                                "rgba(53,98,68,1)",
+                                "rgba(53,98,68,1)",
+                                "rgba(53,98,68,1)",
+                                "rgba(53,98,68,1)",
+                                "rgba(53,98,68,1)",
+                                "rgba(53,98,68,1)"
+                            ],
+            
+                            borderWidth: 1
+            
+                        }]
+                    }
+            
+                ,
+                
+                options: {
+                
+                
+                    title: {
+                
+                        display:true,
+                        fontSize:20,
+                        text: "Top 10 TF-IDF Words",
+                        fontColor: 'white'
+                    },
+                
+                    labels: {
+                
+                        fontStyle: 'bold',
+                
+                    
+                        
+                    },
+                
+                
+                    legend :{
+                
+                        display:false
+                    },
+                
+                    scales: {
+                    yAxes: [{
+                        display: true,
+                        
+                        gridLines: {
+                            display : true
+                        
+                        },
+                        ticks: {
+                            display: true,
+                            fontColor: 'white',
+                            beginAtZero:true,
+                            fontSize: 20
+                        }
+                    }],
+                    xAxes: [{
+                        gridLines: {
+                            display : true
+                        },
+                        ticks: {
+                            beginAtZero:true,
+                            fontColor: 'white',
+                            fontSize: 20
+                        }
+                    }]
+                },
+                
+                
+                
+                
+                
+                }
+            }
+                
+                )
+
+                
+
+
+        var grafico5 = new Chart(contexto5,
+            
+            {
+
+                type:"bar",
+                data: {
+
+                    labels:{{ words_report_count_x | safe }},
+                    datasets: [{
+                        //label:"# de votos",
+                        data:{{ words_report_count_y | safe }},
+                        backgroundColor : "#45b6fe",
+
+                        borderColor:  [
+
+                            "rgba(53,98,68,1)",
+                            "rgba(53,98,68,1)",
+                            "rgba(53,98,68,1)",
+                            "rgba(53,98,68,1)",
+                            "rgba(53,98,68,1)",
+                            "rgba(53,98,68,1)",
+                            "rgba(53,98,68,1)",
+                            "rgba(53,98,68,1)",
+                            "rgba(53,98,68,1)",
+                            "rgba(53,98,68,1)"
+                        ],
+
+                        borderWidth: 1
+
+                    }]
+                }
+
+            ,
+            
+            options: {
+            
+            
+                title: {
+            
+                    display:true,
+                    fontSize:20,
+                    text: "Top 10 Count Documents",
+                    fontColor: 'white'
+                },
+            
+                labels: {
+            
+                    fontStyle: 'bold',
+            
+                
+                    
+                },
+            
+            
+                legend :{
+            
+                    display:false
+                },
+            
+                scales: {
+                yAxes: [{
+                    display: true,
+                    
+                    gridLines: {
+                        display : true
+                    
+                    },
+                    ticks: {
+                        display: true,
+                        fontColor: 'white',
+                        beginAtZero:true,
+                        fontSize: 20
+                    }
+                }],
+                xAxes: [{
+                    gridLines: {
+                        display : true
+                    },
+                    ticks: {
+                        beginAtZero:true,
+                        fontColor: 'white',
+                        fontSize: 20
+                    }
+                }]
+            },
+            
+            
+            
+            
+            
+            }
+        }
+            
+            )
+
+
+
+
+
+
+
+
+            var grafico6 = new Chart(contexto6,
+            
+                {
+            
+                    type:"bar",
+                    data: {
+            
+                        labels:{{ docs_report_count_x | safe}},
+                        datasets: [{
+                            //label:"# de votos",
+                            data:{{ docs_report_count_y | safe}},
+                            backgroundColor : "#45b6fe",
+            
+                            borderColor:  [
+            
+                                "rgba(53,98,68,1)",
+                                "rgba(53,98,68,1)",
+                                "rgba(53,98,68,1)",
+                                "rgba(53,98,68,1)",
+                                "rgba(53,98,68,1)",
+                                "rgba(53,98,68,1)",
+                                "rgba(53,98,68,1)",
+                                "rgba(53,98,68,1)",
+                                "rgba(53,98,68,1)",
+                                "rgba(53,98,68,1)"
+                            ],
+            
+                            borderWidth: 1
+            
+                        }]
+                    }
+            
+                ,
+                
+                options: {
+                
+                
+                    title: {
+                
+                        display:true,
+                        fontSize:20,
+                        text: "Top 10 Count Documents (%)",
+                        fontColor: 'white'
+                    },
+                
+                    labels: {
+                
+                        fontStyle: 'bold',
+                
+                    
+                        
+                    },
+                
+                
+                    legend :{
+                
+                        display:false
+                    },
+                
+                    scales: {
+                    yAxes: [{
+                        display: true,
+                        
+                        gridLines: {
+                            display : true
+                        
+                        },
+                        ticks: {
+                            display: true,
+                            fontColor: 'white',
+                            beginAtZero:true,
+                            fontSize: 20
+                        }
+                    }],
+                    xAxes: [{
+                        gridLines: {
+                            display : true
+                        },
+                        ticks: {
+                            beginAtZero:true,
+                            fontColor: 'white',
+                            fontSize: 20
+                        }
+                    }]
+                },
+                
+                
+                
+                
+                
+                }
+            }
+                
+                )
+                
+    
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+</body>
+</html>
