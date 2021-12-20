@@ -42,7 +42,7 @@ def home(request):
 
      # Parameters
 
-     qnt = 2000
+     qnt = 100
 
      content = "bbb"
      keyword = "{} lang:pt -is:retweet".format(content)
