@@ -2,6 +2,8 @@ from django.shortcuts import render
 from twitter_exploratory_project.core.toolkit_twitter.recent_search import *
 from twitter_exploratory_project.core.toolkit_plot.text_mining import *
 from datetime import datetime, timedelta
+from wordcloud import WordCloud, STOPWORDS, ImageColorGenerator
+import os
 
 
 
@@ -28,6 +30,11 @@ stop_words_domain=["não","da",
                     "fez","fazemos","vem","vamos","ainda","tanto","nesse"] 
 
 
+LOCAL_PATH = os.path.dirname(os.path.abspath(__file__))
+
+IMAGE_WORD_CLOUD_TWEETS_PATH = os.path.join(LOCAL_PATH,"static" + os.sep + "css" + os.sep + "word_cloud_tweets.png")
+
+IMAGE_WORD_CLOUD_HASHTAGS_CITATIONS_PATH = os.path.join(LOCAL_PATH,"static" + os.sep + "css" + os.sep + "word_cloud_hashtags_citations.png")
 
 
 def home(request):
@@ -42,9 +49,9 @@ def home(request):
 
      # Parameters
 
-     qnt = 100
+     qnt = 5000
 
-     content = "bbb"
+     content = "globoplay"
      keyword = "{} lang:pt -is:retweet".format(content)
      
      #start_time = "2021-12-13T00:00:00.000Z"
@@ -53,19 +60,51 @@ def home(request):
      tweet_data = get_data_from_twitter(keyword, start_time=past_date,end_time=current_date,qnt=qnt)
 
 
+
+
+
+
      # Create extra columns
+
+
 
      tweet_data["text_clean"] = tweet_data["text"].apply(lambda x: text_cleaner(text = x,
                                                                                 stop_words_domain=stop_words_domain+[content],
                                                                                 rmv_citations=True,
                                                                                 rmv_hashtags=True))
 
-
-     tweet_data["citations"] = tweet_data["text"].apply(lambda x: extract_hashtags_citations(tweet = x,extract="citation"))
-     tweet_data["hashtags"] = tweet_data["text"].apply(lambda x: extract_hashtags_citations(tweet = x,extract="hashtag"))
-     tweet_data["citations_hashtags"] = tweet_data["text"].apply(lambda x: extract_hashtags_citations(tweet = x,extract="both"))
+     tweet_data["citations"] = tweet_data["text"].apply(lambda x: extract_hashtags_citations(tweet = x,extract="citation",remove_content_tweet=True, content=content))
+     tweet_data["hashtags"] = tweet_data["text"].apply(lambda x: extract_hashtags_citations(tweet = x,extract="hashtag",remove_content_tweet=True, content=content))
+     tweet_data["citations_hashtags"] = tweet_data["text"].apply(lambda x: extract_hashtags_citations(tweet = x,extract="both",remove_content_tweet=True, content=content))
      tweet_data["unique_words"] = tweet_data["text"].apply(lambda x: convert_text_to_no_repeat_words(text = x))
      tweet_data["unique_words_clean"] = tweet_data["text_clean"].apply(lambda x: convert_text_to_no_repeat_words(text = x))
+
+
+
+
+
+     # create wordcloud
+     
+     text_tweets_joined = " ".join(review for review in tweet_data.text_clean)
+
+     wordcloud_tweets = WordCloud(max_font_size=300, max_words=70, background_color="black",width=3000, height=1300).generate(text_tweets_joined)
+
+     wordcloud_tweets.to_file(IMAGE_WORD_CLOUD_TWEETS_PATH)
+
+
+
+     hashtags_citations_joined = " ".join(review for review in tweet_data.citations_hashtags)
+
+     
+     hashtags_citations_joined = re.sub("\#{0}|\@{0}".format(content)," ",hashtags_citations_joined)
+
+     wordcloud_hashtags_citations = WordCloud(include_numbers=True,max_font_size=300, max_words=70, background_color="black",width=3000, height=1300).generate(hashtags_citations_joined)
+
+     wordcloud_hashtags_citations.to_file(IMAGE_WORD_CLOUD_HASHTAGS_CITATIONS_PATH)
+
+
+
+
 
 
      # Create data for plot 
@@ -112,6 +151,7 @@ def home(request):
 
 
 
-     print(data_plot)
 
+
+     
      return render(request,'index.html',data_plot)

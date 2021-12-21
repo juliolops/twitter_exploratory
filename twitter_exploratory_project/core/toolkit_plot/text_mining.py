@@ -73,7 +73,7 @@ def convert_text_to_no_repeat_words(text):
 
 
 
-def extract_hashtags_citations(tweet,extract="both"):
+def extract_hashtags_citations(tweet,extract="both", remove_content_tweet=True, content=""):
 
 
     string_only_hashtags = ""
@@ -90,6 +90,12 @@ def extract_hashtags_citations(tweet,extract="both"):
         list_citations = re.findall(r"@[a-zA-Zà-úÀ-Ú0-9]+",tweet)
         
         string_only_citations = " ".join(list_citations)
+
+    if remove_content_tweet:
+
+        string_only_hashtags = re.sub(r"(?i)\#{0}".format(content),"",string_only_hashtags)
+
+        string_only_citations = re.sub(r"(?i)\@{0}".format(content),"",string_only_citations)
     
     
     return string_only_hashtags + string_only_citations
