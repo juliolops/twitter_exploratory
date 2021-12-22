@@ -49,7 +49,7 @@ def home(request):
 
      # Parameters
 
-     qnt = 5000
+     qnt = 50
 
      content = "globoplay"
      keyword = "{} lang:pt -is:retweet".format(content)

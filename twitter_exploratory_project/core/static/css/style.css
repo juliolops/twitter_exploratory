@@ -103,12 +103,12 @@
     .textArea {
 
         height: 10px;
-        width: 60%;
-        border-radius: 20px;
+        width: 10%;
+        border-radius: 5px;
     
         background-color: #ffffff;
     
-        font-size: 50px;
+        font-size: 10px;
     
         margin: auto;
     
@@ -153,13 +153,13 @@ body {
 
 .textArea {
 
-    height: 3% !important;
-    width: 90%;
-    border-radius: 20px;
+    height: 50px !important;
+    width: 70%;
+
 
     background-color: #ffffff;
 
-    font-size: 30px;
+    font-size: 50px;
 
     padding: 5px;
 
@@ -169,18 +169,19 @@ body {
 
 .div-text-content {
 
-    width: 35%;
+    width: 20%;
 }
 
 .div-text-stop-words {
 
-    width: 35%;
+    width: 20%;
 }
 
 .buttons {
 
     width: 30%;
     height: 100%;
+    padding-top: 270px;
 
 }
 
@@ -256,6 +257,8 @@ h3 {
     flex-direction: row;
 
     align-items: center;
+
+    padding-left: 50px;
 
 }
 
