@@ -127,6 +127,106 @@
     }
 
 
+    .buttonStop {
+
+        height: 30%;
+        width: 40%;
+
+        margin-top: 35px !important;
+        margin-left: 30px !important;
+
+        text-align: center;
+
+        margin: 5px;
+
+        font-size: 20px;
+
+        border-radius: 10px;
+
+        background-color:#800900;
+
+        border-color: #800900;
+
+        color: white;
+    }
+
+
+    .buttonRun {
+
+        height: 30%;
+        width: 40%;
+    
+        margin-top: 35px !important;
+        margin-left: 30px !important;
+        text-align: center;
+        
+        
+        margin: 5px;
+    
+        font-size: 20px;
+    
+        border-radius: 10px;
+    
+        background-color:#008000;
+    
+        border-color: #008000;
+    
+        color: white;
+    }
+
+
+
+    .buttons {
+
+        width: 50%;
+        height: 100%;
+        padding-top: 1px;
+    
+    }
+
+
+    .textArea {
+
+        height: 80px !important;
+        width: 70%;
+    
+    
+        background-color: #ffffff;
+    
+        font-size: 50px;
+    
+        padding: 5px;
+    
+        
+     
+    }
+
+
+    .div-text-content {
+
+        width: 20%;
+
+        align-items: center;
+    }
+    
+    .div-text-stop-words {
+    
+        width: 20%;
+
+        align-items: center;
+    }
+    
+
+
+    h3 {
+
+        color: white;
+        font-size: 50px;
+    
+    }
+
+
+
 }
 
 
