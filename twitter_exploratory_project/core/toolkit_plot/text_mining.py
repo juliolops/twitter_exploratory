@@ -31,7 +31,6 @@ def plot_bar_count_words(text_column=None,
     data_vect = vectorizer.fit_transform(corpus)
     data_vect = data_vect.toarray()
     
-    print(vectorizer.get_feature_names())
     
     df_count_words =  pd.DataFrame({
     "WORDS":vectorizer.get_feature_names() ,

@@ -3,53 +3,10 @@ buttonRun = document.querySelector(".buttonRun")
 
 buttonStop = document.querySelector(".buttonStop")
 
-if(document.querySelector(".status-system").innerText == "Running") {
-
-  document.querySelector(".status-system").style.color = "#008000"
-
-  } else {
-
-
-    document.querySelector(".status-system").style.color = "#800900"
-
-  }
-
-
-if(document.querySelector(".status-system").innerText != "Not starting") {
-
-    //document.querySelector(".status-system").style.color = "#008000"
-
-    //document.getElementById("myBtn").disabled = true
-
-    document.querySelector(".contentTwitter").disabled = true;
-
-    document.querySelector(".contentTwitter").style.backgroundColor='gray';
-
-    document.querySelector(".contentTwitter").style.color='white';
-
-
-
-
-    document.querySelector(".StopWords").disabled = true;
-
-    document.querySelector(".StopWords").style.backgroundColor='gray';
-
-    document.querySelector(".StopWords").style.color='white';
-
-
-
-
-  
-    }
-
 
 
 buttonStop.addEventListener("click", function() {
 
-
-  document.querySelector(".status-system").innerText = "Stopped"
-
-  document.querySelector(".status-system").style.color = "#800900"
 
   console.log("carregou!")
   
@@ -60,7 +17,6 @@ buttonStop.addEventListener("click", function() {
   
   //data.append("contentTwitter", contentTwitter);
 
-  data.append("status_sytem", "Stopped");
   
   data.append("query", contentTwitter);
   
@@ -87,10 +43,6 @@ buttonStop.addEventListener("click", function() {
 
 
 buttonRun.addEventListener("click", function() {
-
-    document.querySelector(".status-system").innerText = "Running";
-
-    document.querySelector(".status-system").style.color = "#008000";
 
 
 
@@ -123,7 +75,6 @@ buttonRun.addEventListener("click", function() {
     
     //data.append("contentTwitter", contentTwitter);
 
-    data.append("status_sytem", "Running");
 
     data.append("query", contentTwitter);
     
@@ -159,9 +110,6 @@ buttonRun.addEventListener("click", function() {
 
 interval = setInterval(function () {
   
-  
-  if(document.querySelector(".status-system").innerText == "Running") {
-  
     
     console.log("carregou!")
     
@@ -174,10 +122,7 @@ interval = setInterval(function () {
     let data = new FormData();
     
     data.append("query", contentTwitter);
-
-    data.append("status_sytem", "Running");
-    
-    
+ 
     
     console.log("clicou aqui!")
       
@@ -201,9 +146,6 @@ interval = setInterval(function () {
     location.reload(true);
     
     }
-    
-    }
-    
     
     // this is inside your loop
   }, 10000)

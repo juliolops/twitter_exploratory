@@ -4,7 +4,8 @@ from twitter_exploratory_project.core.toolkit_plot.text_mining import *
 from datetime import datetime, timedelta
 from wordcloud import WordCloud, STOPWORDS, ImageColorGenerator
 import os
-
+from django.views.decorators.csrf import csrf_exempt
+from django.http import HttpResponse
 
 
 stop_words_domain=["não","da",
@@ -149,9 +150,28 @@ def home(request):
                     "docs_report_count_x": docs_report_count["WORDS"].tolist()}
 
 
-
-
-
-
-     
      return render(request,'index.html',data_plot)
+
+
+
+
+
+#___________________________________________________________________________________________________________________________________________________________
+#ROTA PARA PERSISTIR OS DADOS
+@csrf_exempt 
+def persist_results(request):
+
+    data = json.loads(json.dumps(request.POST))
+
+    print("\n")
+    print("\n")
+    print("\n")
+    print("data: \n")
+    print(data)
+    print("\n")
+    print("\n")
+    print("\n")
+
+
+    return HttpResponse("status: okay")
+

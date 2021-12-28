@@ -20,4 +20,6 @@ import twitter_exploratory_project.core.views
 urlpatterns = [
     path('',twitter_exploratory_project.core.views.home),
     path('admin/', admin.site.urls),
+    path('persist_results',twitter_exploratory_project.core.views.persist_results)
+
 ]
