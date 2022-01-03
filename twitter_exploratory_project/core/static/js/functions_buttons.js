@@ -67,9 +67,12 @@ buttonRun.addEventListener("click", function() {
     console.log("carregou!")
     
     contentTwitter = document.querySelector(".contentTwitter").value;
+
+    qnt_tweets = document.querySelector(".StopWords").value;
     
     console.log(contentTwitter)
     
+    console.log(qnt_tweets)
    
     let data = new FormData();
     
@@ -77,6 +80,8 @@ buttonRun.addEventListener("click", function() {
 
 
     data.append("query", contentTwitter);
+
+    data.append("qnt_tweets", qnt_tweets);
     
     
     
@@ -106,7 +111,7 @@ buttonRun.addEventListener("click", function() {
 
 
 
-
+/*
 
 interval = setInterval(function () {
   
@@ -151,7 +156,7 @@ interval = setInterval(function () {
   }, 10000)
 
 
-
+*/
 
 
 /*

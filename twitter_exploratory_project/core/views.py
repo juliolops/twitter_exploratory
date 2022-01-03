@@ -38,6 +38,37 @@ IMAGE_WORD_CLOUD_TWEETS_PATH = os.path.join(LOCAL_PATH,"static" + os.sep + "css"
 IMAGE_WORD_CLOUD_HASHTAGS_CITATIONS_PATH = os.path.join(LOCAL_PATH,"static" + os.sep + "css" + os.sep + "word_cloud_hashtags_citations.png")
 
 
+PERSIST_JSON_DATA_PATH = os.path.join(LOCAL_PATH,"temp_file_json_folder")
+
+
+
+
+
+'''
+
+if os.path.isfile(PERSIST_DATA_TWEET_PATH_RUNNING + os.sep + 'status_system.json'):
+
+     with open(PERSIST_DATA_TWEET_PATH_RUNNING + os.sep + 'status_system.json') as f:
+
+          status_system_data = json.load(f)
+
+          status_system = status_system_data["status"]
+
+          print("\n")
+          print("\n")
+          print(status_system)
+          print("\n")
+          print("\n")
+
+
+else:
+
+          status_system = "Stopped"
+
+
+'''
+
+
 def home(request):
 
 
@@ -48,11 +79,30 @@ def home(request):
      past_date = past_date.strftime("%Y-%m-%dT%H:%M:%S.000Z")
 
 
-     # Parameters
+     if os.path.isfile(PERSIST_JSON_DATA_PATH + os.sep + "data_tranfer.json"):
 
-     qnt = 50
 
-     content = "voice"
+          # LOAD data_tweets
+
+          
+          file_name_data_tranfer = open(PERSIST_JSON_DATA_PATH + os.sep + "data_tranfer.json", 'r')
+          
+          data_tranfer_json = json.load(file_name_data_tranfer)
+
+          qnt = int(data_tranfer_json["qnt_tweets"])
+
+          content = data_tranfer_json["query"]
+
+     else:
+
+
+          # Parameters
+
+          qnt = 50
+
+          content = "voice"
+
+          
      keyword = "{} lang:pt -is:retweet".format(content)
      
      #start_time = "2021-12-13T00:00:00.000Z"
@@ -161,17 +211,29 @@ def home(request):
 @csrf_exempt 
 def persist_results(request):
 
-    data = json.loads(json.dumps(request.POST))
+     data_json = json.loads(json.dumps(request.POST))
 
-    print("\n")
-    print("\n")
-    print("\n")
-    print("data: \n")
-    print(data)
-    print("\n")
-    print("\n")
-    print("\n")
+     print("\n")
+     print("\n")
+     print("\n")
+     print("data: \n")
+     print(type(data_json))
+     print("\n")
+     print("\n")
+     print("\n")
 
 
-    return HttpResponse("status: okay")
+
+     #PERSIST_JSON_DATA_PATH = open(PERSIST_JSON_DATA_PATH + os.sep +"running" + os.sep + "data_tweets.json", 'w+', encoding='utf8')
+
+
+
+     file_data_tranfer = open("{}/data_tranfer.json".format(PERSIST_JSON_DATA_PATH), 'w')
+
+
+     json.dump(data_json, file_data_tranfer)
+    
+    
+
+     return HttpResponse("status: okay")
 
