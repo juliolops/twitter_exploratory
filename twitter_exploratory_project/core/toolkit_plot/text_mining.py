@@ -21,13 +21,13 @@ def plot_bar_count_words(text_column=None,
                          name_class=None,
                          dataframe=None,
                          metric='SUM',
-                         top=50,return_df=True):
+                         top=50,return_df=True, ngram = (1,1)):
     
     corpus = dataframe[text_column].values
     
  
     
-    vectorizer = CountVectorizer()
+    vectorizer = CountVectorizer(ngram_range=ngram)
     data_vect = vectorizer.fit_transform(corpus)
     data_vect = data_vect.toarray()
     
@@ -101,7 +101,7 @@ def extract_hashtags_citations(tweet,extract="both", remove_content_tweet=True, 
 
 
 
-def text_cleaner(text,stop_words_domain =[],rmv_citations=False,rmv_hashtags=False):
+def text_cleaner(text,stop_words_domain =[],rmv_citations=False,rmv_hashtags=False,rmv_stop_words=True):
 
 
     if rmv_hashtags:

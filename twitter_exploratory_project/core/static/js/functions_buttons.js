@@ -1,6 +1,8 @@
 
 buttonRun = document.querySelector(".buttonRun")
 
+
+/*
 buttonStop = document.querySelector(".buttonStop")
 
 
@@ -41,6 +43,8 @@ buttonStop.addEventListener("click", function() {
 
 })
 
+
+*/
 
 buttonRun.addEventListener("click", function() {
 
