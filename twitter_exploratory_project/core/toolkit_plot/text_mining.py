@@ -92,9 +92,9 @@ def extract_hashtags_citations(tweet,extract="both", remove_content_tweet=True, 
 
     if remove_content_tweet:
 
-        string_only_hashtags = re.sub(r"(?i)\#{0}".format(content),"",string_only_hashtags)
+        string_only_hashtags = re.sub(r"(?i)\#{0}\s|\s\#{0}$|^\#{0}\s|^\#{0}$".format(content)," ",string_only_hashtags)
 
-        string_only_citations = re.sub(r"(?i)\@{0}".format(content),"",string_only_citations)
+        string_only_citations = re.sub(r"(?i)\@{0}\s|\s\@{0}$|^\@{0}\s|^\@{0}$".format(content)," ",string_only_citations)
     
     
     return string_only_hashtags + string_only_citations
@@ -106,11 +106,11 @@ def text_cleaner(text,stop_words_domain =[],rmv_citations=False,rmv_hashtags=Fal
 
     if rmv_hashtags:
 
-        text = re.sub("#[a-zA-Zà-úÀ-Ú0-9]+","",text)
+        text = re.sub("#[a-zA-Zà-úÀ-Ú0-9]+"," ",text)
 
     if rmv_citations:
 
-        text = re.sub("@[a-zA-Zà-úÀ-Ú0-9]+","",text)
+        text = re.sub("@[a-zA-Zà-úÀ-Ú0-9]+"," ",text)
 
     
     nltk_stopwords =  stopwords.words('portuguese') + stop_words_domain
@@ -144,3 +144,34 @@ def text_cleaner(text,stop_words_domain =[],rmv_citations=False,rmv_hashtags=Fal
 
 
     return text_final
+
+
+def text_easy_cleaner(text,rmv_https=True,rmv_content=True,content=None,rmv_hashtags=True,rmv_citations=True):
+
+
+    if rmv_hashtags:
+
+        text = re.sub("#[a-zA-Zà-úÀ-Ú0-9]+","",text)
+
+    if rmv_citations:
+
+        text = re.sub("@[a-zA-Zà-úÀ-Ú0-9]+","",text) 
+
+
+    if rmv_https:
+
+        regex_remove_https = 'https([a-zA-Zà-úÀ-Ú0-9]|[-()\#/@;:<>{}`+=~|.!?,])+'
+
+
+        text = re.sub(r"(\s|^){0}(\s{0})*($|\s)".format(regex_remove_https)," ",text)
+
+    
+    if rmv_content and content is not None:
+        
+
+        text = re.sub(r"(\s|^){0}(\s{0})*($|\s)".format(content)," ",text)
+
+ 
+
+    return text
+

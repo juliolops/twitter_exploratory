@@ -137,7 +137,14 @@ def home(request):
 
 
 
+          tweet_data["text_easy_cleaned"] = tweet_data["text"].apply(lambda x: text_easy_cleaner(text = x,content=content))
 
+          tweet_data["text_http_removed"] = tweet_data["text"].apply(lambda x: text_easy_cleaner(text = x,content=content))
+
+
+          print(content)
+
+          print(tweet_data["text_easy_cleaned"])
           # create wordcloud
           
           text_tweets_joined = " ".join(review for review in tweet_data.text_clean)
@@ -193,9 +200,15 @@ def home(request):
                                                        metric='SUM',top=10,return_df=True, ngram = (2,2))
 
 
-          words_report_count_trigram = plot_bar_count_words(text_column='text_clean',
+          words_report_count_trigram = plot_bar_count_words(text_column='text_easy_cleaned',
                                              dataframe=tweet_data,
                                              metric='SUM',top=10,return_df=True, ngram = (3,3))
+
+
+          
+          words_report_count_quadrigram = plot_bar_count_words(text_column='text_http_removed',
+                                             dataframe=tweet_data,
+                                             metric='SUM',top=10,return_df=True, ngram = (4,4))
 
 
 
@@ -216,14 +229,15 @@ def home(request):
                          "words_report_count_y": words_report_count["SUM"].tolist(),
                          "words_report_count_x": words_report_count["WORDS"].tolist(),
                          
-                         "docs_report_count_y": docs_report_count["SUM"].tolist(),
-                         "docs_report_count_x": docs_report_count["WORDS"].tolist(),
-
                          "words_report_count_y_bigram": words_report_count_bigram["SUM"].tolist(),
                          "words_report_count_x_bigram": words_report_count_bigram["WORDS"].tolist(),
 
                          "words_report_count_y_trigram": words_report_count_trigram["SUM"].tolist(),
                          "words_report_count_x_trigram": words_report_count_trigram["WORDS"].tolist(),
+
+
+                         "words_report_count_y_quadrigram": words_report_count_quadrigram["SUM"].tolist(),
+                         "words_report_count_x_quadrigram": words_report_count_quadrigram["WORDS"].tolist(),
                          
                          }
 
@@ -260,15 +274,19 @@ def home(request):
                          "words_report_count_y": [0,0,0,0,0,0,0,0,0,0],
                          "words_report_count_x": ["word0","word1","word2","word3","word4","word5","word6","word7","word8","word9"],
                          
-                         "docs_report_count_y": [0,0,0,0,0,0,0,0,0,0],
-                         "docs_report_count_x": ["word0","word1","word2","word3","word4","word5","word6","word7","word8","word9"],
 
 
                          "words_report_count_y_bigram": [0,0,0,0,0,0,0,0,0,0],
                          "words_report_count_x_bigram": ["word0","word1","word2","word3","word4","word5","word6","word7","word8","word9"],
 
                          "words_report_count_y_trigram": [0,0,0,0,0,0,0,0,0,0],
-                         "words_report_count_x_trigram": ["word0","word1","word2","word3","word4","word5","word6","word7","word8","word9"]
+                         "words_report_count_x_trigram": ["word0","word1","word2","word3","word4","word5","word6","word7","word8","word9"],
+
+
+
+                         "words_report_count_y_quadrigram": [0,0,0,0,0,0,0,0,0,0],
+                         "words_report_count_x_quadrigram": ["word0","word1","word2","word3","word4","word5","word6","word7","word8","word9"],
+
 
                          }
 

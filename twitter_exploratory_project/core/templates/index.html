@@ -134,6 +134,40 @@
     </div>
 
 
+    <div class="container-cards">
+
+        <article class="card card-7">
+
+            <div class="freq-words">
+
+                <canvas id="grafico7"></canvas>
+                
+            </div>
+
+        </article>
+
+        <article class="card card-8">
+
+            <div class="freq-words">
+
+                <canvas id="grafico8"></canvas>
+                
+            </div>
+
+        </article>
+
+
+    
+    </div>
+
+
+
+
+
+
+
+
+
 
 
     </section>
@@ -155,6 +189,9 @@
         contexto4 = document.getElementById("grafico4")
         contexto5 = document.getElementById("grafico5")
         contexto6 = document.getElementById("grafico6")
+
+        contexto7 = document.getElementById("grafico7")
+        contexto8 = document.getElementById("grafico8")
     
 
 
@@ -465,10 +502,10 @@
                     type:"bar",
                     data: {
             
-                        labels:{{ docs_report_count_x | safe}},
+                        labels:{{ words_report_count_x_bigram | safe}},
                         datasets: [{
                             //label:"# de votos",
-                            data:{{ docs_report_count_y | safe}},
+                            data:{{ words_report_count_y_bigram | safe}},
                             backgroundColor : "#45b6fe",
             
                             borderColor:  [
@@ -499,7 +536,7 @@
                 
                         display:true,
                         fontSize:20,
-                        text: "Top 10 Count Documents",
+                        text: "Top 10 Count Bigrams",
                         fontColor: 'white'
                     },
                 
@@ -552,7 +589,212 @@
             }
                 
                 )
+
+
+
+
+
+
+            var grafico7 = new Chart(contexto7,
+            
+            {
+
+                type:"bar",
+                data: {
+
+                    labels:{{ words_report_count_x_trigram | safe }},
+                    datasets: [{
+                        //label:"# de votos",
+                        data:{{ words_report_count_y_trigram | safe }},
+                        backgroundColor : "#45b6fe",
+
+                        borderColor:  [
+
+                            "rgba(53,98,68,1)",
+                            "rgba(53,98,68,1)",
+                            "rgba(53,98,68,1)",
+                            "rgba(53,98,68,1)",
+                            "rgba(53,98,68,1)",
+                            "rgba(53,98,68,1)",
+                            "rgba(53,98,68,1)",
+                            "rgba(53,98,68,1)",
+                            "rgba(53,98,68,1)",
+                            "rgba(53,98,68,1)"
+                        ],
+
+                        borderWidth: 1
+
+                    }]
+                }
+
+            ,
+            
+            options: {
+            
+            
+                title: {
+            
+                    display:true,
+                    fontSize:20,
+                    text: "Top 10 Count Trigrams",
+                    fontColor: 'white'
+                },
+            
+                labels: {
+            
+                    fontStyle: 'bold',
+            
                 
+                    
+                },
+            
+            
+                legend :{
+            
+                    display:false
+                },
+            
+                scales: {
+                yAxes: [{
+                    display: true,
+                    
+                    gridLines: {
+                        display : true
+                    
+                    },
+                    ticks: {
+                        display: true,
+                        fontColor: 'white',
+                        beginAtZero:true,
+                        fontSize: 20
+                    }
+                }],
+                xAxes: [{
+                    gridLines: {
+                        display : true
+                    },
+                    ticks: {
+                        beginAtZero:true,
+                        fontColor: 'white',
+                        fontSize: 20
+                    }
+                }]
+            },
+            
+            
+            
+            
+            
+            }
+        }
+            
+            )
+
+
+
+
+
+
+
+
+            var grafico8 = new Chart(contexto8,
+            
+                {
+            
+                    type:"bar",
+                    data: {
+            
+                        labels:{{ words_report_count_x_quadrigram | safe}},
+                        datasets: [{
+                            //label:"# de votos",
+                            data:{{ words_report_count_y_quadrigram | safe}},
+                            backgroundColor : "#45b6fe",
+            
+                            borderColor:  [
+            
+                                "rgba(53,98,68,1)",
+                                "rgba(53,98,68,1)",
+                                "rgba(53,98,68,1)",
+                                "rgba(53,98,68,1)",
+                                "rgba(53,98,68,1)",
+                                "rgba(53,98,68,1)",
+                                "rgba(53,98,68,1)",
+                                "rgba(53,98,68,1)",
+                                "rgba(53,98,68,1)",
+                                "rgba(53,98,68,1)"
+                            ],
+            
+                            borderWidth: 1
+            
+                        }]
+                    }
+            
+                ,
+                
+                options: {
+                
+                
+                    title: {
+                
+                        display:true,
+                        fontSize:20,
+                        text: "Top 10 Count Quadrigrams",
+                        fontColor: 'white'
+                    },
+                
+                    labels: {
+                
+                        fontStyle: 'bold',
+                
+                    
+                        
+                    },
+                
+                
+                    legend :{
+                
+                        display:false
+                    },
+                
+                    scales: {
+                    yAxes: [{
+                        display: true,
+                        
+                        gridLines: {
+                            display : true
+                        
+                        },
+                        ticks: {
+                            display: true,
+                            fontColor: 'white',
+                            beginAtZero:true,
+                            fontSize: 20
+                        }
+                    }],
+                    xAxes: [{
+                        gridLines: {
+                            display : true
+                        },
+                        ticks: {
+                            beginAtZero:true,
+                            fontColor: 'white',
+                            fontSize: 20
+                        }
+                    }]
+                },
+                
+                
+                
+                
+                
+                }
+            }
+                
+                )
+
+
+
+
     
     </script>
     
