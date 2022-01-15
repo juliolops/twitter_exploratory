@@ -58,35 +58,10 @@ if os.path.isfile(IMAGE_WORD_CLOUD_HASHTAGS_CITATIONS_PATH):
 
 
 
-'''
-
-if os.path.isfile(PERSIST_DATA_TWEET_PATH_RUNNING + os.sep + 'status_system.json'):
-
-     with open(PERSIST_DATA_TWEET_PATH_RUNNING + os.sep + 'status_system.json') as f:
-
-          status_system_data = json.load(f)
-
-          status_system = status_system_data["status"]
-
-          print("\n")
-          print("\n")
-          print(status_system)
-          print("\n")
-          print("\n")
-
-
-else:
-
-          status_system = "Stopped"
-
-
-'''
-
-
 def home(request):
 
 
-     current_date = datetime.utcnow() - timedelta(minutes=10)
+     current_date = datetime.utcnow() - timedelta(minutes=3)
      current_date = current_date.strftime("%Y-%m-%dT%H:%M:%S.000Z")
 
      past_date = datetime.utcnow() - timedelta(days=5) - timedelta(minutes=10)
@@ -142,9 +117,9 @@ def home(request):
           tweet_data["text_http_removed"] = tweet_data["text"].apply(lambda x: text_easy_cleaner(text = x,content=content))
 
 
-          print(content)
+          
 
-          print(tweet_data["text_easy_cleaned"])
+          
           # create wordcloud
           
           text_tweets_joined = " ".join(review for review in tweet_data.text_clean)
@@ -308,16 +283,7 @@ def persist_results(request):
 
      data_json = json.loads(json.dumps(request.POST))
 
-     print("\n")
-     print("\n")
-     print("\n")
-     print("data: \n")
-     print(type(data_json))
-     print("\n")
-     print("\n")
-     print("\n")
-
-
+     
 
      #PERSIST_JSON_DATA_PATH = open(PERSIST_JSON_DATA_PATH + os.sep +"running" + os.sep + "data_tweets.json", 'w+', encoding='utf8')
 
