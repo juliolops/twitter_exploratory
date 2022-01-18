@@ -2,7 +2,7 @@
 
 ## Resumo
 
-Este projeto tem como objetivo criar um painel o qual possibilita obter informações de forma rápida do TWITTER. 
+Este projeto tem como objetivo criar um painel responsivo o qual possibilita obter informações de forma rápida do TWITTER. 
 
 O usuário escolhe qual assunto ele pretente realizar o text mining e quantos tweets serão analisados
 
