@@ -19,9 +19,21 @@ O painel é composto por 6 visualizações, que consistem em: Nuvem de palavras 
 
 </ul>  
 
+
+## Execução 
+
+
+É necessário a instalação das dependências através do comando "pip install -r requirements.txt". Após a instalação das dependências o usuário pode iniciar a aplicação através do comando "python manage.py runserver" 
+
+
 ## Tela inteira
 
+# Abaixo é exibido imagens do painel com o resultado de uma pesquisa de 10 mil tweets para o assunto BBB
+
 ![Captura de tela de 2022-01-18 01-24-56](https://user-images.githubusercontent.com/40969977/149870866-460bcd39-044b-4992-a6e3-fe18df25dcc7.png)
+
+![Captura de tela de 2022-01-18 01-40-54](https://user-images.githubusercontent.com/40969977/149872147-5dec17ab-ca99-4e08-aee1-0a2ea2f4997c.png)
+
 
 
 ## Primeira visualização
