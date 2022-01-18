@@ -37,19 +37,28 @@ Nuvem de palavras das citações e hashtags
 ![Captura de tela de 2022-01-18 01-27-50](https://user-images.githubusercontent.com/40969977/149871147-041e9809-5943-4010-a9d3-d0bd4028d843.png)
 
 
-## Terceira visualização
+## Terceira e Quarta visualizações
 
-Top 10 das palavras mais frequentes 
+Top 10 hashtags e citações
 
-![Captura de tela de 2022-01-18 01-30-22](https://user-images.githubusercontent.com/40969977/149871466-296e677b-4370-4be6-9464-4be7a1884a67.png)
+![Captura de tela de 2022-01-18 01-37-02](https://user-images.githubusercontent.com/40969977/149871864-ff52ca15-e106-4dc5-8ebe-f4f9b3d91036.png)
 
 
-## Terceira e Quarta visualização
+## Quinta e Sexta visualizações
 
-Top 10 dos bigrams mais frequentes 
+Top 10 das palavras mais frequentes e Top 10 dos bigrams mais frequentes 
 
 
 ![Captura de tela de 2022-01-18 01-33-29](https://user-images.githubusercontent.com/40969977/149871590-e17c86bf-9c61-4187-8e17-4d59c04f6aaa.png)
+
+
+
+## Sétima e Oitava visualizações
+
+Top 10 dos Trigrams mais frequentes e Top 10 dos Quadrigrams mais frequentes 
+
+![Captura de tela de 2022-01-18 01-39-19](https://user-images.githubusercontent.com/40969977/149872017-ba1b07df-a86d-485f-8785-86e063e6b9e2.png)
+
 
 
 
