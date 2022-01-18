@@ -41,7 +41,17 @@ Nuvem de palavras das citações e hashtags
 
 Top 10 das palavras mais frequentes 
 
-![Captura de tela de 2022-01-18 0![Captura de tela de 2022-01-18 01-30-22](https://user-images.githubusercontent.com/40969977/149871290-cd6bf51d-7bfb-469b-886e-b0acdc41dbeb.png)8d843.png)
+![Captura de tela de 2022-01-18 01-30-22](https://user-images.githubusercontent.com/40969977/149871466-296e677b-4370-4be6-9464-4be7a1884a67.png)
+
+
+## Terceira e Quarta visualização
+
+Top 10 dos bigrams mais frequentes 
+
+
+![Captura de tela de 2022-01-18 01-33-29](https://user-images.githubusercontent.com/40969977/149871590-e17c86bf-9c61-4187-8e17-4d59c04f6aaa.png)
+
+
 
 
 
