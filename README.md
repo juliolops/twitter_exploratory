@@ -24,3 +24,4 @@ O painel é composto por 6 visualizações, que consistem em: Nuvem de palavras 
 
 Nuvem de palavras dos tweets
 
+![Captura de tela de 2022-01-18 01-18-42](https://user-images.githubusercontent.com/40969977/149870302-6e806bcb-3918-430a-907c-f7d78e633683.png)
